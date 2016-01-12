@@ -1,0 +1,36 @@
+body {
+    width: 768px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.title {
+    height: 45px;
+    line-height: 45px;
+    border-bottom: 1px solid rgba(160, 160, 160, 1);
+}
+
+.buttons {
+    padding: 20px;
+    border-bottom: 1px solid rgba(160, 160, 160, 1);
+}
+
+.comment {
+    padding: 15px;
+}
+
+.comment .head {
+    padding: 10px;
+}
+
+.comment .head .name {
+    margin-right: 20px;
+}
+
+.comment .head .time {
+    color: rgba(180, 180, 180, 1);
+}
+
+.comment .content {
+    padding: 10px;
+}
