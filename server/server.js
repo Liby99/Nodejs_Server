@@ -14,7 +14,7 @@ var url = require("url");
 var path = require("path");
 
 //Load Server framework
-var config = require("./data/config_data").config;
+var config = require("./data/config").config;
 var file = require("./file");
 var ajax = require("./ajax");
 

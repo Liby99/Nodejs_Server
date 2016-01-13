@@ -8,7 +8,7 @@
  */
 
 var mysql = require("mysql");
-var config = require("./data/config_data").config;
+var config = require("./data/config").config;
 
 exports.query = function (obj) {
     

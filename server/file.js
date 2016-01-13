@@ -12,8 +12,8 @@ exports.readFile = function (pathname, response) {
     //Load basic file system and path data.
     var fs = require("fs");
     var pt = require("path");
-    var pd = require("./data/path_data").path;
-    var td = require("./data/type_data").type;
+    var pd = require("./data/path").path;
+    var td = require("./data/type").type;
     
     //Start processing Path
     if (pd[pt.dirname(pathname)] == 0) {
