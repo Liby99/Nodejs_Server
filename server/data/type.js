@@ -1,7 +1,12 @@
 /**
  * Author: Liby Lee
+ * Version: 0.0.1
+ * Date: 01/11/2016
+ * File: type.js
  * 
+ * Basically listed all the return type in HTTP response.
  */
+
 exports.type = {
     'css': 'text/css',
     'gif': 'image/gif',

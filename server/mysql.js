@@ -1,6 +1,6 @@
 /**
  * Author: Liby Lee
- * Version: 0.0.1
+ * Version: 0.0.2
  * Date: 01/12/2016
  * File: mysql.js
  * 
@@ -10,17 +10,39 @@
 var mysql = require("mysql");
 var config = require("./data/config_data").config;
 
-exports.query = function (query, callback) {
+exports.query = function (obj) {
+    
+    /*
+     * Sample input
+     * obj = {
+     *     query: "",
+     *     data: [ ],
+     *     success: function (result) { },
+     *     error: function (error) { },
+     *     finally: function () { }
+     * }
+     */
     
     //Start Client and make query
     var client = startClient();
-    client.query(query, function (error, results, fields) {
+    client.query(obj.query, obj.data, function (error, results, fields) {
         if (error) {
             console.log(error);
-            throw "DatabaseQueryError";
+            
+            //Check if there's error function in obj
+            if (obj.error) {
+                obj.error();
+            }
         }
         else {
-            callback(results);
+            
+            //Success function is required
+            obj.success(results);
+        }
+        
+        //If there's finally function in obj, then call finally function.
+        if (obj.finally) {
+            obj.finally();
         }
     });
 
@@ -28,9 +50,25 @@ exports.query = function (query, callback) {
 
 exports.execute = function (obj) {
     
+    /*
+     * Sample input
+     * obj = {
+     *     query: "query",
+     *     data: [ ]
+     * }
+     */
+    
     //Start Client and make execution
     var client = startClient();
-    client.query(obj.query, obj.data);
+    
+    //Make execution
+    client.query(obj.query, obj.data, function (error, results, fields) {
+        if (error) {
+            
+            //Log error if there's an error
+            console.log(error);
+        }
+    });
 }
 
 function startClient() {

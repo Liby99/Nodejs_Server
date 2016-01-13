@@ -3,6 +3,8 @@
  * Version: 1.0.0
  * Date: 01/11/2016
  * File: string.js
+ * 
+ * An encapsulated string class offers some extra methods.
  */
 
 exports.String = function (str) {
