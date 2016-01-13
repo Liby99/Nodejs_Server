@@ -16,9 +16,24 @@ exports.process = function (request, response) {
     //Pick out the basename from the request
     var basename = pt.basename(url.parse(request.url).pathname);
     
-    //Load corresponding handler module
-    var handler = require("../handler/" + basename);
-    
-    //Call Process method of the handler
-    handler.process(request, response);
+    try {
+        //Load corresponding handler module
+        var handler = require("../handler/" + basename);
+
+        //Call Process method of the handler
+        handler.process(request, response);
+    }
+    catch (ex) {
+        
+        //Generate the Error String
+        var str = "Tempting to request AJAX " + basename + " FAILED";
+        
+        //Log the error to the console
+        console.log(str);
+        
+        //Make 404 Response
+        response.writeHead(404, "text/plain");
+        response.write(str);
+        response.end();
+    }
 }

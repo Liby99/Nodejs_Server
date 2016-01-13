@@ -20,20 +20,32 @@ var ajax = require("./ajax");
 
 function startServer () {
     http.createServer(function (request, response) {
+        try {
         
-        //Save the pathname from the request
-        var pathname = url.parse(request.url).pathname;
-        
-        //Check if the request is AJAX
-        if (path.dirname(pathname) == "/ajax") {
-            
-            //Start Ajax and process the request
-            ajax.process(request, response);
+            //Save the pathname from the request
+            var pathname = url.parse(request.url).pathname;
+
+            //Check if the request is AJAX
+            if (path.dirname(pathname) == "/ajax") {
+
+                //Start Ajax and process the request
+                ajax.process(request, response);
+            }
+            else {
+
+                //Start reading files and process request
+                file.readFile(pathname, response);
+            }
         }
-        else {
+        catch (ex) {
             
-            //Start reading files and process request
-            file.readFile(pathname, response);
+            //Log the Error to the server
+            console.log(ex);
+            
+            //Make Response
+            response.writeHead(417, "text/plain");
+            response.write("Expectation Failed");
+            response.end();
         }
     }).listen(config.port);
     
