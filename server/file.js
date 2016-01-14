@@ -82,6 +82,7 @@ function readHomepage (response, index) {
                 //Record Homepage Not Found Error
                 console.log("Default Homepage Not Found");
                 response404Page(response);
+                response.end();
             }
             else {
                 
@@ -95,9 +96,8 @@ function readHomepage (response, index) {
             //Response with the default homepage
             response.writeHead(200, td[pt.extname(pathname)]);
             response.write(data.toString());
+            response.end();
         }
-        
-        response.end();
     });
 }
 
