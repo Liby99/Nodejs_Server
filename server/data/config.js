@@ -12,7 +12,10 @@ exports.config = {
     'mysql_username': 'root',
     'mysql_password': '********',
     'mysql_database': 'Yobs',
-    'default_page': '../index.html',
+    'default_page': [
+        'index.html',
+        'default.html'
+    ],
     '404_page': '../404.html',
     'port': 8080
 }

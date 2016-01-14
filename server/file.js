@@ -21,22 +21,8 @@ exports.readFile = function (pathname, response) {
         
         //Check if the pathname is empty
         if (pathname == "/") {
-            fs.readFile(conf['default_page'], function (error, data) {
-                
-                //Check if the read file process have any error
-                if (error) {
-                    
-                    //Record the homepage not found error
-                    console.log("Default Homepage Not Found");
-                    response404Page(response);
-                }
-                else {
-                    
-                    //Response with the default homepage
-                    response.writeHead(200, td[pt.extname(pathname)]);
-                    response.write(data.toString());
-                }
-            });
+            
+            readHomepage(response, 0);
         }
         else {
             
@@ -78,6 +64,37 @@ exports.readFile = function (pathname, response) {
     }
     
 };
+
+function readHomepage (response, index) {
+    
+    //Iterate through all homepage using index
+    fs.readFile("../" + conf['default_page'][index], function (error, data) {
+
+        //Check if the read file process have any error
+        if (error) {
+            
+            //If index as surpassed the length
+            if (++index >= conf['default_page'].length) {
+
+                //Record Homepage Not Found Error
+                console.log("Default Homepage Not Found");
+                response404Page(response);
+            }
+            else {
+                
+                //Recursively read the next homepage
+                readHomepage(response, index);
+            }
+
+        }
+        else {
+
+            //Response with the default homepage
+            response.writeHead(200, td[pt.extname(pathname)]);
+            response.write(data.toString());
+        }
+    });
+}
 
 function response404Page (response) {
 
