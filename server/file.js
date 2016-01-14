@@ -22,6 +22,7 @@ exports.readFile = function (pathname, response) {
         //Check if the pathname is empty
         if (pathname == "/") {
             
+            //Start Recursively Read the Homepage
             readHomepage(response, 0);
         }
         else {
@@ -102,8 +103,10 @@ function readHomepage (response, index) {
 
 function response404Page (response) {
 
+    var pathname = "../" + conf['404_page'];
+    
     //Read the Default 404 Page
-    fs.readFile(conf['404_page'], function (error, data) {
+    fs.readFile(pathname, function (error, data) {
 
         //Check if the read file process have any error.
         if (error) {

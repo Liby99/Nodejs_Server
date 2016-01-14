@@ -16,6 +16,6 @@ exports.config = {
         'index.html',
         'default.html'
     ],
-    '404_page': '../404.html',
+    '404_page': '404.html',
     'port': 8080
 }
