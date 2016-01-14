@@ -115,7 +115,7 @@ function response404Page (response) {
         else {
 
             //Response with 404 Page
-            response.writeHead(301, td["html"]);
+            response.writeHead(404, td["html"]);
             response.write(data.toString());
         }
         
