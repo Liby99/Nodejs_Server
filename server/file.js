@@ -67,8 +67,10 @@ exports.readFile = function (pathname, response) {
 
 function readHomepage (response, index) {
     
+    var pathname = "../" + conf['default_page'][index];
+    
     //Iterate through all homepage using index
-    fs.readFile("../" + conf['default_page'][index], function (error, data) {
+    fs.readFile(pathname, function (error, data) {
 
         //Check if the read file process have any error
         if (error) {
@@ -93,6 +95,8 @@ function readHomepage (response, index) {
             response.writeHead(200, td[pt.extname(pathname)]);
             response.write(data.toString());
         }
+        
+        response.end();
     });
 }
 
@@ -114,6 +118,8 @@ function response404Page (response) {
             response.writeHead(404, td["html"]);
             response.write(data.toString());
         }
+        
+        response.end();
     });
 }
 
