@@ -10,7 +10,7 @@
 
 exports.config = {
     'mysql_username': 'root',
-    'mysql_password': '********',
+    'mysql_password': 'Bionicle-120',
     'mysql_database': 'Yobs',
     'default_page': [
         'index.html',

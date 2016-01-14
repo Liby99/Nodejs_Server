@@ -17,9 +17,10 @@ exports.process = function (request, response) {
     var basename = pt.basename(url.parse(request.url).pathname);
     
     try {
+        
         //Load corresponding handler module
         var handler = require("../handler/" + basename);
-
+        
         //Call Process method of the handler
         handler.process(request, response);
     }

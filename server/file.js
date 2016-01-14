@@ -37,6 +37,7 @@ exports.readFile = function (pathname, response) {
                 if (error) {
                     
                     //Record the document not found error
+                    console.log("Cannot Find Following File: ")
                     console.log(error);
                     
                     //Response with 404
@@ -45,11 +46,8 @@ exports.readFile = function (pathname, response) {
                 else {
                     response.writeHead(200, td[pt.extname(pathname)]);
                     response.write(data.toString());
+                    response.end();
                 }
-
-                //End response
-                //P.S. Write inside function because this function is not synced.
-                response.end();
             });
         }
     }
@@ -82,7 +80,6 @@ function readHomepage (response, index) {
                 //Record Homepage Not Found Error
                 console.log("Default Homepage Not Found");
                 response404Page(response);
-                response.end();
             }
             else {
                 
@@ -118,7 +115,7 @@ function response404Page (response) {
         else {
 
             //Response with 404 Page
-            response.writeHead(404, td["html"]);
+            response.writeHead(301, td["html"]);
             response.write(data.toString());
         }
         
