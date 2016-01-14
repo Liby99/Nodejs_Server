@@ -10,7 +10,7 @@
 
 exports.config = {
     'mysql_username': 'root',
-    'mysql_password': 'Bionicle-120',
+    'mysql_password': '********',
     'mysql_database': 'Yobs',
     'port': 8080
 }
