@@ -17,5 +17,7 @@ exports.config = {
         'default.html'
     ],
     '404_page': '404.html',
+    'session_beats': 3000,
+    'session_expire_time': 30000,
     'port': 8080
 }
