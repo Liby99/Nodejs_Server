@@ -2,6 +2,50 @@
 
 A self-written Node.js Server Application. 
 
+# Introduction
+
+Note: The Application is written integrating the file structure. So do not change the name of server files or path names.
+
+To Start running the server after installed node.js, open terminal, go to /server directory, and run:
+    $ node index.js
+Then you will see a log
+    Server now running on port 8080
+
+To change the port, go to /server/data/config.js
+And change the port entry to the port you want.
+
+To connect to your mysql database, also go to /server/data/config.js
+And change the corresponding
+    mysql_username
+    mysql_password
+    mysql_database
+So that you will successfully connect to your database
+
+# Samples
+
+There are several samples in the published files:
+
+The front end files: 
+    /index.html
+    /css/basic.css
+    /js/basic.js
+
+The back end files:
+    /handler/comment.js
+    /server/module/comment.js
+    /server/module/user.js
+    
+Hope you can 
+
+# Note for Get/Post AJAX Requests
+
+From the html files, you need to request the url: 
+
+    .../ajax/[target]?action=[data]
+
+Where the [target] should not contain any extension names. (And [data] follows the original structure)
+Containing action is easy for the handler to recognize what thing it needs to do.
+
 # Paths
 
 /
