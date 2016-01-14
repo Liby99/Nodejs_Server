@@ -52,12 +52,12 @@ Hope you can know how to use the server application through these files.
 
 # Note for Get/Post AJAX Requests
 
-From the html files, you need to request the url: 
+From the client Javascript, you need to request the url: 
 
     /ajax/[target]?action=[data]
 
-Where the [target] should not contain any extension names. (And [data] follows the original structure)
-Containing action is easy for the handler to recognize what thing it needs to do.
+Where the [target] should not contain any extension names. (And [data] follows the original structure.)
+Containing <code>action</code> is easy for the handler to recognize what thing it needs to do.
 
 # Paths
 
