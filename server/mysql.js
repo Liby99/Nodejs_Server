@@ -73,13 +73,28 @@ exports.execute = function (obj) {
 
 function startClient() {
     
-    //Create new Client object
-    var client = mysql.createConnection({
-        user: config["mysql_username"],
-        password: config["mysql_password"]
-    });
-    client.query("USE " + config["mysql_database"]);
-    
-    //Return client
-    return client;
+    try {
+        //Create new Client object
+        var client = mysql.createConnection({
+            user: config["mysql_username"],
+            password: config["mysql_password"]
+        });
+        
+        try {
+            client.query("USE " + config["mysql_database"]);
+
+            //Return client
+            return client;
+        }
+        catch (ex) {
+            
+            console.log("Cannot find database: " + config["mysql_database"]);
+            throw ex;
+        }
+    }
+    catch (ex) {
+        
+        console.log("Wrong Username or Password! ");
+        throw ex;
+    }
 }
