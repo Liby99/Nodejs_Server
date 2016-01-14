@@ -70,13 +70,13 @@ function readHomepage (response, index) {
     
     //Iterate through all homepage using index
     fs.readFile(pathname, function (error, data) {
-
+        
         //Check if the read file process have any error
         if (error) {
             
-            //If index as surpassed the length
+            //If added index as surpassed the length
             if (++index >= conf['default_page'].length) {
-
+                
                 //Record Homepage Not Found Error
                 console.log("Default Homepage Not Found");
                 response404Page(response);
@@ -86,10 +86,9 @@ function readHomepage (response, index) {
                 //Recursively read the next homepage
                 readHomepage(response, index);
             }
-
         }
         else {
-
+            
             //Response with the default homepage
             response.writeHead(200, td[pt.extname(pathname)]);
             response.write(data.toString());
@@ -99,21 +98,21 @@ function readHomepage (response, index) {
 }
 
 function response404Page (response) {
-
+    
     var pathname = "../" + conf['404_page'];
     
     //Read the Default 404 Page
     fs.readFile(pathname, function (error, data) {
-
+        
         //Check if the read file process have any error.
         if (error) {
-
+            
             //If Default 404 Page not found
             console.log("Default 404 Page Not Found");
             responseFileNotFound(response);
         }
         else {
-
+            
             //Response with 404 Page
             response.writeHead(404, td["html"]);
             response.write(data.toString());

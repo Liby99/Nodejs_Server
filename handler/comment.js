@@ -25,8 +25,8 @@ exports.process = function (request, response) {
             addComment(request, response);
             break;
         default:
-            response.writeHead(404, {'Content-Type': "text/plain"});
-            response.write("404 Not Found");
+            response.writeHead(400, {'Content-Type': "text/plain"});
+            response.write(res.genData(401, "Command Not Found"));
             response.end();
             break;
     }

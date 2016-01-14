@@ -9,10 +9,10 @@ exports.newUser = function (email, firstName, lastName, password) {
     
 }
 
-exports.login = function (email, password, obj) {
+exports.login = function (data) {
     
     //First encode password
-    var encoded = encode.encode(password);
+    var encoded = encode.encode(data.password);
     
     try {
         //Check if there's any corresponding user
@@ -21,14 +21,14 @@ exports.login = function (email, password, obj) {
             data: [email, encoded],
             success: function (result) {
                 if (result[0].amount === 0) {
-                    obj.loginFailed();
+                    data.failed();
                 }
                 else {
-                    obj.loginSuccess();
+                    data.success();
                 }
             },
             error: function () {
-                obj.connectionError();
+                obj.error();
             }
         });
     }
