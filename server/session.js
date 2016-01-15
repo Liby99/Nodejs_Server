@@ -1,3 +1,12 @@
+/**
+ * Author: Liby Lee
+ * Version: 0.0.1
+ * Date: 01/14/2016
+ * File: session.js
+ * 
+ * Offers basic API for restoring sessions.
+ */
+
 var config = require("./data/config").config;
 var dt = require("./module/DateTime");
 
@@ -7,12 +16,17 @@ exports.session = function () {
     this._session = {};
     
     /**
-     * Retrieve the session
+     * Get the session by given key.
+     * @param key, the key to search for a session. return undefined if unfind.
      */
     this.get = function (key) {
         return refresh(key);
     };
     
+    /**
+     * Refresh the session with the given key.
+     * @param key, the key to the session which needs refresh.
+     */
     this.refresh = function (key) {
         if (this._session[key]) {
             _session[key].startTime = Date.parse(new Date());
@@ -46,7 +60,7 @@ exports.session = function () {
     
     this.garbageCollect = function () {
         for (var session in this._session) {
-            var diff = dt.getDifference(session.startTime, Date.parse(new Date()));
+            var diff = dt.getTimeSpan(new Date(session.startTime), new Date());
             if (diff > config.session_expire_time) {
                 this.delete(session.key);
             }
