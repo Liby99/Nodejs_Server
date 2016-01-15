@@ -4,7 +4,7 @@
  * Date: 01/12/2016
  * File: config.js
  * 
- * Includs the configuration of the MySQL account, database, and http server port
+ * Includes the configuration of the MySQL account, database, and http server port
  */
 
 exports.config = {
