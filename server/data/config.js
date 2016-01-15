@@ -4,8 +4,7 @@
  * Date: 01/12/2016
  * File: config.js
  * 
- * Includs the configuration of the MySQL account, database, and http server 
- * port
+ * Includs the configuration of the MySQL account, database, and http server port
  */
 
 exports.config = {
@@ -17,7 +16,7 @@ exports.config = {
         'default.html'
     ],
     '404_page': '404.html',
-    'session_beats': 3000,
-    'session_expire_time': 30000,
+    'session_beats': 1000 * 60 * 3,
+    'session_expire_time': 1000 * 60 * 30,
     'port': 8080
 }

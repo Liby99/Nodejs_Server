@@ -1,4 +1,5 @@
 var config = require("./data/config").config;
+var dt = require("./module/DateTime");
 
 exports.session = function () {
     
@@ -45,7 +46,10 @@ exports.session = function () {
     
     this.garbageCollect = function () {
         for (var session in this._session) {
-            if ()
+            var diff = dt.getDifference(session.startTime, Date.parse(new Date()));
+            if (diff > config.session_expire_time) {
+                this.delete(session.key);
+            }
         }
-    }
+    };
 }
