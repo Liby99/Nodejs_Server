@@ -2,6 +2,10 @@ exports.DateTime = function (date) {
     this.dateTime = date;
 }
 
+exports.getTimeSpan = function (start, end) {
+    return Math.abs(Date.parse(start) - Date.parse(end));
+}
+
 DateTime.prototype.toSqlDateTime = function () {
     return this.dateTime.Format("yyyy-MM-dd hh:mm:ss");
 }

@@ -16,6 +16,12 @@ exports.process = function (request, response) {
         case "logout":
             logout(request, response);
             break;
+        case "log_session":
+            logSession(request, response);
+            break;
+        case "check_session":
+            checkSession(request, response);
+            break;
         default:
             response.writeHead(400, {'Content-Type': "text/plain"});
             response.write(res.genData(401, "Command Not Found"));
@@ -47,4 +53,29 @@ function login(request, response) {
             }
         });
     });
+}
+
+function logSession(request, response) {
+    
+    console.log("start logging session");
+    var session = require("../server/session");
+    console.log("required session");
+    session.add("logged", 1);
+    console.log("successfully logged!");
+    
+    response.writeHead(200, {'Content-Type': "text/plain"});
+    response.write(res.genData(0, ""));
+    response.end();
+}
+
+function checkSession(request, response) {
+    
+    console.log("start checking session");
+    var session = require("../server/session");
+    console.log("required session");
+    var logged = session.get("logged");
+    
+    response.writeHead(200, {'Content-Type': "text/plain"});
+    response.write(res.genData(0, "", logged));
+    response.end();
 }

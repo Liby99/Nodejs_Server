@@ -27,10 +27,11 @@ exports.process = function (request, response) {
     catch (ex) {
         
         //Generate the Error String
-        var str = "Tempting to request AJAX " + basename + " FAILED";
+        var str = "Tempting to request AJAX " + basename + " FAILED: ";
         
         //Log the error to the console
-        console.log(str);
+        console.log(str)
+        console.log(ex);
         
         //Make 404 Response
         response.writeHead(404, "text/plain");

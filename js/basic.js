@@ -44,7 +44,33 @@ function post() {
         success: function (result) {
             
         },
-        error: function (result) {
+        error: function () {
+            alert("Connection Error");
+        }
+    });
+}
+
+function logSession() {
+    $.ajax({
+        url: "/ajax/login?action=log_session",
+        type: "get",
+        success: function (result) {
+            alert("success");
+        },
+        error: function () {
+            alert("Connection Error");
+        }
+    });
+}
+
+function checkSession() {
+    $.ajax({
+        url: "/ajax/login?action=check_session",
+        type: "get",
+        success: function (result) {
+            alert(result.content);
+        },
+        error: function () {
             alert("Connection Error");
         }
     })
