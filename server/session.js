@@ -13,15 +13,15 @@ var config = require("./data/config").config;
 module.exports = {
     
     //The Main Session Object Storing Sessions
-    sessions: new Object(),
+    _sessions: new Object(),
     /**
      * Refresh the session with the given key.
      * @param key, the key to the session which needs refresh.
      */
     refresh: function (key) {
-        if (this.sessions[key]) {
-            this.sessions[key].startTime = Date.parse(new Date());
-            return this.sessions[key].value;
+        if (this._sessions[key]) {
+            this._sessions[key].startTime = Date.parse(new Date());
+            return this._sessions[key].value;
         }
         else {
             return undefined;
@@ -40,11 +40,11 @@ module.exports = {
             'value': value,
             'startTime': Date.parse(new Date())
         };
-        this.sessions[key] = session;
+        this._sessions[key] = session;
     },
     del: function (key) {
         if (this.get(key)) {
-            delete this.ssessions[key];
+            delete this._sessions[key];
         }
     }/*,
     start: function () {
@@ -53,7 +53,7 @@ module.exports = {
         }, config.session_beats);
     },
     garbageCollect: function () {
-        for (var session in this._session) {
+        for (var session in this._sessions) {
             var diff = dt.getTimeSpan(new Date(session.startTime), new Date());
             if (diff > config.session_expire_time) {
                 this.del(session.key);
